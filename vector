@@ -1,0 +1,7 @@
+Vector is an Dynamic Array which allocates memory dynamically.
+	Syntax:	vector < datatype > vector_name;
+ex:
+	vector<int>ds;
+	vector<int>ds(n,10);
+    
+	
