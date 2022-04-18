@@ -28,7 +28,6 @@ int main() {
 		ans++;
 		j++;
 		h++;
-		//f1(26,0);
 	}
 	cout<<ans;
 }
