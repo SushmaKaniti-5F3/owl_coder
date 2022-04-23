@@ -1,0 +1,35 @@
+                                                                        CAN REACH:
+                                                                      -------------
+Tevitt started his journey in a infinity grid, he will always begin his journey from (1,1) say (x,y) and his destination is (a,b),
+though he has n number of ways to reach the destination (a,b) but he opted to move either in (x,x+y) or (x+y,y) path to reach the 
+destination now your task is to find out weather he able to reach the destination by moving in (x,x+y) or (x+y,y), if he able to 
+reach the destination print YES if not then print NO.
+ 
+Input Format:
+--------------
+First line contains an integer Q which indicates no of queries. Next Q lines contains a, b which is destination quadrantes.
+
+Output Format:
+--------------
+Display YES if can reach otherwise NO (in capital letters)
+
+
+    PROGRAM:
+----------------
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        int a,b;
+        cin>>a>>b;
+        while(a!=0 and b!=0)
+        {
+            (a>b)?(a=a-b):(b=b-a);
+        }
+        (a==1 or b==1)?(cout<<"YES"):(cout<<"NO");
+        cout<<endl;
+}
