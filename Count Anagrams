@@ -1,0 +1,67 @@
+Given a word S and a text X. Return the count of the occurrences of anagrams of the word in the text. if you dont find any anagram print -1.
+
+Input format:
+First line contains a string S and second line contains another string X.
+
+Output format:
+Display the number of anagrams present in S compared with X.
+
+Input:
+forxxorfxdofr
+for
+
+Output:
+3
+
+Explanation:
+for, orf and ofr appears in the txt, hence answer is 3.
+--------------------------------------------------------------------------------
+#include<bits/stdc++.h>
+using namespace std;
+bool Is_anagram(int frqp[],int frqw[])
+{
+    for(int i=0;i<26;i++)
+    {
+        if(frqp[i]!=frqw[i])
+        return false;
+    }
+    return true;
+}
+ 
+int anagrams(string s,string p)
+{
+    int cnt=0;
+    vector<int> ans;
+    int frqp[26]={0};
+    int frqw[26]={0};
+    int m=s.size();
+    int n=p.size();
+    if(n>m) return -1;
+    for(int i=0;i<n;i++)
+    {
+        frqp[p[i]-'a']+=1;
+        frqw[s[i]-'a']+=1;
+    }
+    int l=0,r=n;
+    while(r<=m)
+    {
+        if(Is_anagram(frqp,frqw))
+        {
+            ans.push_back(l);
+            cnt++;
+        }
+        frqw[s[l]-'a']-=1;
+        if(r<m)
+        frqw[s[r]-'a']+=1;
+        l++;
+        r++;
+        
+    }
+    return cnt;
+}
+int main()
+{
+    string s1,s2;
+    cin>>s1>>s2;
+    cout<<anagrams(s1,s2);
+}
