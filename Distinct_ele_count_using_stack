@@ -1,0 +1,45 @@
+#include <iostream>
+using namespace std;
+void display(int st[],int top,int d[])
+{
+	for(int i=0;i<=top;i++)
+	{
+		cout<<st[i]<<" ";
+		cout<<d[i]<<" ";
+	}
+}
+void push(int st[],int top,int n,int arr[])
+{
+	int count=0;
+	int d[100],k=0;
+	for(int i=0;i<n;i++)
+	{
+		if(st[top]>arr[i])
+		{
+			count++;
+			continue;
+		}
+		else
+		{
+			top++;
+			st[top]=arr[i];
+			d[k]=count;
+			k++;
+			count=1;
+		}
+	}
+	d[k]=count;
+	display(st,top,d);
+}
+
+int main() {
+	int n,top=0;
+	cin>>n;
+	int arr[n],st[100];
+	for(int i=0;i<n;i++)
+	cin>>arr[i];
+	st[top]=arr[0];
+	push(st,top,n,arr);
+
+	return 0;
+}
