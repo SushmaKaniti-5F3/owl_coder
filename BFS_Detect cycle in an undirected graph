@@ -1,0 +1,60 @@
+class Solution {
+  public:
+    // Function to detect cycle in an undirected graph.
+    bool checkcycle(int node,int par,vector<int>&vis,vector<int>adj[])
+    {
+        queue<pair<int,int>>Q;
+        Q.push({node,par});
+        vis[node]=1;
+        while(!Q.empty())
+        {
+            node=Q.front().first;
+            par=Q.front().second;
+            Q.pop();
+            for(auto i: adj[node])
+            {
+                if(!vis[i])
+                {
+                    Q.push({i,node});
+                    vis[i]=1;
+                }
+                else if(i!=par)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    bool isCycle(int V, vector<int> adj[]) {
+        vector<int>vis(V+1,0);
+        for(int i=0;i<V;i++)
+        {
+            if(!vis[i])
+            {
+                if(checkcycle(i,-1,vis,adj))
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+};
+
+Example1:                                       Example2:
+--------------------                            ----------------------------------
+Input:                                          Input:
+------                                          ------
+
+  1 - 2                                              0
+ /  \  \                                           1 - 2
+0   4 - 3                                             /
+                                                     3
+Output:                                          Output:
+-------                                          ------
+1                                                0
+
+Explanation:                                     Explanition:
+-------------                                    ------------
+1->2->3->4->1 is a cycle.                        No cycle in the graph
